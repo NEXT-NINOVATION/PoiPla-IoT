@@ -2,10 +2,10 @@ import sys
 import requests
 import json
 
-url = "http://localhost:8080"
+url = "https://poipla.yumekiti.net/api/iot/dust-box-pushes"
 
 payload = json.dumps({
-  "status": sys.argv[1]
+ "token": "hoge"
 })
 
 headers = {
