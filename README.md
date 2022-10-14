@@ -1,15 +1,6 @@
 # ぽいプラ
 
-## 使い方
+## pico
 
-### 本場用
-
-```
-python main.py {url} {token} {pin}
-```
-
-### テスト用
-
-```
-python test.py {status}
-```
+開いたときに 1 を返す
+閉まったときに 0 を返す
