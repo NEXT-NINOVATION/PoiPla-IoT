@@ -25,8 +25,14 @@ def main():
   # 初期化
   status = 0
   lock = 0
-  global running
-  headers = {"Accept": "", "Content-Type": "application/x-www-form-urlencoded"}
+  global running 
+  headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+  payload = json.dumps({
+    "token": "hoge"
+  })
 
   try:
     while True and running:
@@ -39,7 +45,6 @@ def main():
         if status != lock:
           if status == "0":
             # POST リクエスト
-            payload = "status=" + status
             response = requests.request(
               "POST", url.get(), headers=headers, data=payload
             )
