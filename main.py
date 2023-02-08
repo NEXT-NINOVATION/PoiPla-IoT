@@ -96,7 +96,7 @@ def onSelectedCOM(event):
 
 # Initialization
 root = Tk()
-root.title("open_close_logger")
+root.title("PoiPla")
 
 # Frame
 frame = ttk.Frame(root, padding=20)
