@@ -4,6 +4,7 @@ from serial.tools import list_ports
 import requests
 from threading import Thread
 from time import sleep
+import json
 
 # シリアルポート取得
 ports = list_ports.comports()
@@ -31,7 +32,7 @@ def main():
     'Content-Type': 'application/json'
   }
   payload = json.dumps({
-    "token": "hoge"
+    "token": token.get()
   })
 
   try:
@@ -46,7 +47,8 @@ def main():
           if status == "0":
             # POST リクエスト
             response = requests.request(
-              "POST", url.get(), headers=headers, data=payload
+              # "POST", url.get(), headers=headers, data=payload
+              "POST", "https://poipla.yumekiti.net/api/iot/dust-box-pushes", headers=headers, data=payload
             )
             print(response.text)
 
@@ -80,7 +82,7 @@ def start():
   # disable
   startBtn["state"] = "disable"
   combo["state"] = "disable"
-  url["state"] = "disable"
+  token["state"] = "disable"
 
   # start main
   global thread
@@ -113,12 +115,13 @@ combo.bind("<<ComboboxSelected>>", onSelectedCOM)
 combo.grid(column=1, row=0, sticky=E)
 
 # Label
-label = ttk.Label(frame, text="Set URL")
+label = ttk.Label(frame, text="Set Token")
 label.grid(column=0, row=2)
 
 # Entry
-url = ttk.Entry(frame, width=50)
-url.grid(column=1, row=2, sticky=E)
+token = ttk.Entry(frame, width=50)
+token.grid(column=1, row=2, sticky=E)
+token.insert(0, "hoge")
 
 # Stop Button
 stopBtn = ttk.Button(frame, text="Stop", command=root.destroy)
